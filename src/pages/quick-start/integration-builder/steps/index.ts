@@ -21,13 +21,18 @@ export const LANGS: DisplayChoice[] = [
   { key: "angular", displayName: "Angular" },
   { key: "android", displayName: "Android" },
   { key: "ios", displayName: "iOS/Swift" },
-  // { key: "react-native", displayName: "React Native" },
+  { key: "react-native", displayName: "React Native" },
   { key: "flutter", displayName: "Flutter" },
 ];
 
 export const TOGGLE_CHOICES: DisplayChoice[] = [
   { key: "no", displayName: "No" },
   { key: "yes", displayName: "Yes" },
+];
+
+export const RN_MODE_CHOICES: DisplayChoice[] = [
+  { key: "expo", displayName: "Expo" },
+  { key: "bare", displayName: "Bare React Native" },
 ];
 
 const web3authIntegrationBuilder: IntegrationBuilder = {
@@ -100,6 +105,39 @@ const web3authIntegrationBuilder: IntegrationBuilder = {
           default: TOGGLE_CHOICES[0].key,
           type: "toggle",
           choices: TOGGLE_CHOICES,
+        },
+      };
+    } else if (values.lang === "react-native") {
+      this.options = {
+        lang: {
+          displayName: "Language/Framework",
+          default: LANGS[0].key,
+          type: "dropdown",
+          choices: LANGS,
+        },
+        customAuthentication: {
+          displayName: "Custom Authentication",
+          default: TOGGLE_CHOICES[0].key,
+          type: "toggle",
+          choices: TOGGLE_CHOICES,
+        },
+        whitelabel: {
+          displayName: "Whitelabel",
+          default: TOGGLE_CHOICES[0].key,
+          type: "toggle",
+          choices: TOGGLE_CHOICES,
+        },
+        usingEmailPasswordless: {
+          displayName: "Using Email Passwordless",
+          default: TOGGLE_CHOICES[0].key,
+          type: "toggle",
+          choices: TOGGLE_CHOICES,
+        },
+        mode: {
+          displayName: "React Native workflow",
+          default: RN_MODE_CHOICES[0].key,
+          type: "dropdown",
+          choices: RN_MODE_CHOICES,
         },
       };
     } else {
